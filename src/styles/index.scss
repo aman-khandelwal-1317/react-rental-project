@@ -1,0 +1,26 @@
+@import "./header.scss" ;
+@import "./colors.scss" ;
+@import "./rental-home.scss" ;
+
+html , body {
+  height: 100% ;
+}
+
+.type-{
+  &apartment {
+    color : #a72da3 ;
+  }
+  &house {
+    color : #bf1818 ;
+  }
+  &condo {
+    color : #d68000 ;
+  }
+}
+.title{
+  font-size: 100px ;
+}
+
+.bwm-container {
+  padding-top: 70px;
+}
