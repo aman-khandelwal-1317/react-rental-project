@@ -2,6 +2,7 @@
 import React from "react" ;
 import RentalCard from "../components/Rental/RentalCard" ;
 import store from "../store" ;
+import connect from "../store/connect" ;
 
 class RentalHome extends React.Component{
 
@@ -9,6 +10,7 @@ state = {
   rentals : []
 }
 componentDidMount() {
+
   this.setState({
     rentals : store.rentals()
   });
@@ -44,4 +46,9 @@ const newRentals =  rentals.map((rental) => {
   }
 }
 
-export default RentalHome ;
+const mapStateToProps = (state) => {
+  return {
+    rentals : state.rentals
+  }
+}
+export default connect(mapStateToProps)(RentalHome) ;
