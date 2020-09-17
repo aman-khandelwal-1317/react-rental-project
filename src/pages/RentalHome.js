@@ -1,18 +1,20 @@
 
 import React from "react" ;
 import RentalCard from "../components/Rental/RentalCard" ;
-import store from "../store" ;
+import {initStore} from "../store" ;
 import connect from "../store/connect" ;
 
+debugger ;
+const store = initStore() ;
 class RentalHome extends React.Component{
 
 state = {
   rentals : []
 }
 componentDidMount() {
-
+ const { rentals } = this.props ;
   this.setState({
-    rentals : store.rentals()
+    rentals : rentals
   });
 }
 

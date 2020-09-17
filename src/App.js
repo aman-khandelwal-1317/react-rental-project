@@ -2,11 +2,14 @@
 import React from 'react' ;
 // import CounterApp from "./components/CounterApp/CounterApp"
 import Header from "./components/shared/Header" ;
-
+import {initStore} from "./store" ;
+import Provider from "./store/Provider" ;
 import Routes from "./Routes" ;
 //import { Router , Route } from "./components/Router";
 import {
   BrowserRouter as Router } from "react-router-dom" ;
+
+  const store = initStore() ;
 const App = () => {
   //  <h1 className={props.className}>Hello World</h1>
   // <CounterApp title = "I am CounterApp"/>
@@ -25,12 +28,12 @@ const App = () => {
   //   }
   // }
   return(
-
+<Provider store={store}>
   <Router>
    < Header />
      <Routes />
    </Router>
-
+</Provider>
   )
 }
 
