@@ -3,19 +3,13 @@ import React from "react" ;
 import RentalCard from "../components/Rental/RentalCard" ;
 import {initStore} from "../store" ;
 import connect from "../store/connect" ;
-
+import {fetchRentals} from "../actions" ;
 debugger ;
 const store = initStore() ;
 class RentalHome extends React.Component{
 
-state = {
-  rentals : []
-}
 componentDidMount() {
- const { rentals } = this.props ;
-  this.setState({
-    rentals : rentals
-  });
+ this.props.dispatch(fetchRentals()) ;
 }
 
 renderRentals(rentals){
@@ -31,7 +25,7 @@ const newRentals =  rentals.map((rental) => {
 
   render() {
 
-                const { rentals } = this.state ;
+                const { rentals } = this.props ;
     return  (
       <div className="card-list">
         <div className="container">
