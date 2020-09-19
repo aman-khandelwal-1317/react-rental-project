@@ -2,8 +2,8 @@
 import React from "react" ;
 import RentalCard from "../components/Rental/RentalCard" ;
 import {initStore} from "../store" ;
-import connect from "../store/connect" ;
-import {fetchRentals} from "../actions" ;
+import {connect} from "react-redux" ;
+import {fetchRentals , createRental} from "../actions" ;
 debugger ;
 const store = initStore() ;
 class RentalHome extends React.Component{
@@ -36,6 +36,7 @@ const newRentals =  rentals.map((rental) => {
           }
 
           </div>
+
         </div>
       </div>
     )

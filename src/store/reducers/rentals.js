@@ -5,12 +5,13 @@
 //MATH.RANDOM()
 
 const rentals = (state = [] , action) => {
-  if(action.type === "FETCH_RENTALS")
-{  return action.rentals ;
+
+switch(action.type) {
+  case "FETCH_RENTALS" :   return action.rentals ;
+  case "CREATE_RENTAL" :   return [...state , action.rental] ;
+  default :                return state ;
 }
-else {
-  return state ;
-}
+  
 }
 
 export default rentals ;
