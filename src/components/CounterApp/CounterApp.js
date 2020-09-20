@@ -1,8 +1,8 @@
 
 import React ,{useState , useEffect , useCallback} from "react" ;
-import "./CounterApp.css" ;
+import "CounterApp.css" ;
 import PropTypes from "prop-types" ;
-import CounterView from "./CounterView" ;
+import CounterView from "CounterView" ;
 
 // set is object that keeps only unique data
 const functions = new Set() ;

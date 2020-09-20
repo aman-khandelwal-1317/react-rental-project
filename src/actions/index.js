@@ -1,5 +1,5 @@
 
-import {rentalData } from "../store/data" ;
+import {rentalData } from "store/data" ;
 
 export const fetchRentals = () => {
   return {
@@ -8,9 +8,18 @@ export const fetchRentals = () => {
   }
 }
 
+export const fetchRentalById = (rentalId) => {
+  debugger ;
+  const rental = rentalData.find((rental) => rental._id === rentalId)
+  return {
+    type : "FETCH_RENTAL_BY_ID" ,
+    rental : rental
+  }
+}
+
 export const createRental = (newRental) => {
   return {
     type : "CREATE_RENTAL" ,
-    rental : newRental 
+    rental : newRental
   }
 }

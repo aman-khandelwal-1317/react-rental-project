@@ -1,9 +1,9 @@
 
 import React from "react" ;
-import RentalHome from "./pages/RentalHome" ;
-import RentalDetail from "./pages/RentalDetail" ;
-import Login from "./pages/Login" ;
-import Register from "./pages/Register" ;
+import RentalHome from "pages/RentalHome" ;
+import RentalDetail from "pages/RentalDetail" ;
+import Login from "pages/Login" ;
+import Register from "pages/Register" ;
 import {
   Switch ,
   Route
