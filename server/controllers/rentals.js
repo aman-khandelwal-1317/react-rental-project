@@ -4,10 +4,11 @@ const Rental = require("../models/rental");
 
 exports.getRentals = (req , res) => {
   
-    Rental.find({}, (err , foundRentals) => {
-      if(err){
-        return new Rental()
-        .sendError(res , {status : 422 ,detail : "Can not retrieve rental data !!" }) ;
+    Rental.find({}, (error , foundRentals) => {
+      if(error){
+        // return new Rental()
+        // .sendError(res , {status : 422 ,detail : "Can not retrieve rental data !!" }) ;
+        return res.mongoError(error) ;
       }
        return res.json(foundRentals) ;
     })
@@ -18,10 +19,11 @@ exports.getRentalById = (req , res) => {
 
     const { rentalId } = req.params ;
 
-     Rental.findById(rentalId , (err , foundRental) => {
-      if(err){
-        return new Rental()
-        .sendError(res , {status : 422 ,detail : "Can not retrieve rental data !!" }) ;
+     Rental.findById(rentalId , (error , foundRental) => {
+      if(error){
+        // return new Rental()
+        // .sendError(res , {status : 422 ,detail : "Can not retrieve rental data !!" }) ;
+        return res.mongoError(error) ;
       }
       return res.json(foundRental);
      })
@@ -32,10 +34,11 @@ exports.createRental = ( req , res ) => {
     const rentalData = req.body ;
     
     const newRental = new Rental(rentalData) ;
-    newRental.save((err, createdRental) => {
-      if(err){
-        return new Rental()
-        .sendError(res , {status : 422 ,detail : "Can not post rental data !!" }) ;
+    newRental.save((error, createdRental) => {
+      if(error){
+        // return new Rental()
+        // .sendError(res , {status : 422 ,detail : "Can not post rental data !!" }) ;
+        return res.mongoError(error) ;
       }
       return res.json({message : "Rental with id : " + createdRental._id + " was added ."});
     }) ;
