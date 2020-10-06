@@ -2,6 +2,7 @@
 import rentals from "./reducers/rentals" ;
 import thunk from "redux-thunk" ;
 import rental from "./reducers/rental" ;
+import auth from "./reducers/auth" ;
 import { createStore , combineReducers , applyMiddleware} from "redux" ;
 
 // const addPromiseToDispatch = (store) => {
@@ -35,7 +36,8 @@ import { createStore , combineReducers , applyMiddleware} from "redux" ;
 export function initStore() {
   const reducers = combineReducers({
     rentals : rentals ,
-    rental : rental
+    rental : rental ,
+    auth : auth
   }) ;
   const store = createStore(reducers , applyMiddleware(thunk)) ;
   // store.dispatch = addPromiseToDispatch(store) ;

@@ -3,8 +3,9 @@ import React from "react";
 import {
  Link
 } from "react-router-dom" ;
+import { connect } from "react-redux" ;
 
-const Header = () => {
+const Header = ({username , isAuth , logout}) => {
   return(
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
   <Link className="navbar-brand" to="/">BloggerJi</Link>
@@ -18,9 +19,16 @@ const Header = () => {
     <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
   </form>
     <ul className="navbar-nav ml-auto">
+      { isAuth &&
+       <li className="nav-item ">
+       <div className="nav-link">Welcome {username} </div>
+     </li>
+      }
       <li className="nav-item active">
-        <Link className="nav-link" to="/">Home <span className="sr-only">(current)</span></Link>
+        <div className="nav-link" >Home <span className="sr-only">(current)</span></div>
       </li>
+      { isAuth &&
+      <>
       <li className="nav-item dropdown">
         <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Manage
@@ -33,12 +41,21 @@ const Header = () => {
         </div>
       </li>
       <li className="nav-item">
+      <div onClick={logout} className="nav-link">LogOut</div>
+    </li>
+    </>
+      
+       }
+      {    !isAuth &&
+        <React.Fragment>
+      <li className="nav-item">
         <Link className="nav-link" to="/login">Login</Link>
       </li>
       <li className="nav-item">
         <Link className="nav-link" to="/register">Register</Link>
       </li>
-
+      </React.Fragment>
+    }
 
     </ul>
 
@@ -47,4 +64,11 @@ const Header = () => {
   )
 }
 
-export default Header ;
+const mapStateToProps = ({auth : {username , isAuth}}) => {
+  return {
+    username : username ,
+    isAuth : isAuth
+  }
+}
+
+export default connect(mapStateToProps)(Header) ;

@@ -4,6 +4,9 @@ import RentalHome from "pages/RentalHome" ;
 import RentalDetail from "pages/RentalDetail" ;
 import Login from "pages/Login" ;
 import Register from "pages/Register" ;
+import AuthRoute from "components/auth/AuthRoute" ;
+import GuestRoute from "components/auth/GuestRoute" ;
+import SecretPage from "pages/SecretPage" ;
 import {
   Switch ,
   Route
@@ -13,15 +16,18 @@ const Routes = () => {
   return (
     <div className="container bwm-container">
     <Switch>
-   <Route path="/login">
+    <AuthRoute path="/secret" >
+      <SecretPage />
+  </AuthRoute>
+   <GuestRoute path="/login">
     <Login />
-  </Route>
+  </GuestRoute>
   <Route path="/rentals/:id">
    <RentalDetail />
  </Route>
-  <Route path="/register">
+  <GuestRoute path="/register">
    <Register />
- </Route>
+ </GuestRoute>
  <Route exact path="/">
   <RentalHome />
  </Route>

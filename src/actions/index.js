@@ -1,6 +1,15 @@
 
 import axios from "axios" ;
 
+export const extractApiErrors = (resError) => {
+    let errors = [{title :"Error!" , detail : "Oops , something went wrong !"}] ; 
+
+    if(resError && resError.data && resError.data.errors) {
+      errors = resError.data.errors ;
+    }
+    return errors ;
+}
+
 export const fetchRentals = () => {
 
   return function(dispatch) {
@@ -43,4 +52,28 @@ export const createRental = (newRental) => {
     type : "CREATE_RENTAL" ,
     rental : newRental
   }
+}
+
+// AUTH actions
+
+export const registerUser = (registerData) => {
+  return axios.post("/api/v1/users/register" , registerData  ) 
+  .catch(error => {
+    return Promise.reject(extractApiErrors(error.response || {})) ;
+  })
+}
+
+export const loginUser = (loginData) => {
+  return axios.post("/api/v1/users/login" , loginData  ) 
+  .then(res => res.data)
+  .catch(error => {
+    return Promise.reject(extractApiErrors(error.response || {})) ;
+  })
+}
+
+export const userAuthenticated = (decodedToken) => {
+  return {
+    type : "USER_AUTHENTICATED" ,
+    username : decodedToken.username || ""
+        }
 }
