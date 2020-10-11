@@ -2,6 +2,7 @@
 
 #server 
 /server/config/dev.js
+dev.js
 # dependencies
 /node_modules
 /.pnp

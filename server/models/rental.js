@@ -6,11 +6,14 @@ const Schema = mongoose.Schema ;
 const rentalSchema  = new Schema({
     title: { type : String , required : true , maxlength : [128,"Invalid length !! Max Allowed : 128 "]},
     city: { type : String , required : true , lowercase : true },
+    street : { type : String , required : true , lowercase : true },
     category: { type : String , required : true , lowercase : true },
     image: { type : String , required : true},
     numOfRooms: Number,
     shared: Boolean,
+    owner : {type : Schema.Types.ObjectId , ref : "User"} ,
     description: { type : String , required : true},
+    createdAt : { type : Date , default : Date.now } ,
     dailyPrice: Number
 }) ;
 

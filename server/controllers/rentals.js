@@ -32,6 +32,9 @@ exports.getRentalById = (req , res) => {
 
 exports.createRental = ( req , res ) => {
     const rentalData = req.body ;
+    const user = res.locals.user ;
+
+    rentalData.owner = user ;
     
     const newRental = new Rental(rentalData) ;
     newRental.save((error, createdRental) => {

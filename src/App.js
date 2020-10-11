@@ -5,6 +5,7 @@ import Header from "components/shared/Header" ;
 import {initStore} from "store" ;
 import {Provider} from "react-redux" ;
 import { AuthProvider , useAuth } from "providers/AuthProvider" ;
+import { MapProvider } from "providers/MapProvider" ;
 import Routes from "Routes" ;
 //import { Router , Route } from "./components/Router";
 import {
@@ -15,7 +16,9 @@ import {
   const Providers = ({children}) => {
     return (<Provider store={store}>
     <AuthProvider>
+      <MapProvider apiKey="Mm2cQMiHofczQkcJ9EPOZFKdc3ybtivd">
       { children }
+      </MapProvider>
     </AuthProvider>
     </Provider>)
   }

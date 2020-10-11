@@ -6,12 +6,22 @@ import { fetchRentalById } from "actions" ;
 import { capitalize } from "helpers/functions" ;
 import RentalAssets from "components/Rental/RentalAssets";
 import RentalInfo from "components/Rental/RentalInfo";
+import TomMap from "components/map/TomMap";
 
 class RentalDetail extends React.Component {
 
 componentDidMount() {
   const { id } = this.props.match.params ;
   this.props.dispatch(fetchRentalById(id)) ;
+}
+
+componentWillUnmount() {
+  this.props.dispatch({type : "UNMOUNT_RENTAL"}) ;
+}
+
+get location() {
+  const { rental : { city , street } } = this.props ;
+  return city ;
 }
 
   render() {
@@ -25,12 +35,11 @@ componentDidMount() {
           <div classNameName="row">
            
             <div className="col-md-6 ">
-              {/* <!-- TODO: Display rental map --> */}
+              {/* <!-- TODO: Display rental img --> */}
              <img src={rental.image} alt={rental.title} />
             </div>
             <div className="col-md-6 ">
-              {/* <!-- TODO: Display rental img --> */}
-             <img src={rental.image} alt={rental.title} />
+              <TomMap location={this.location}/>
             </div>
           </div>
         </div>

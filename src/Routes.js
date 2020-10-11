@@ -11,6 +11,7 @@ import {
   Switch ,
   Route
 } from "react-router-dom" ;
+import RentalNew from "pages/RentalNew";
 
 const Routes = () => {
   return (
@@ -22,6 +23,9 @@ const Routes = () => {
    <GuestRoute path="/login">
     <Login />
   </GuestRoute>
+  <AuthRoute path="/rentals/new" >
+      <RentalNew />
+  </AuthRoute>
   <Route path="/rentals/:id">
    <RentalDetail />
  </Route>
