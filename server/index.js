@@ -4,13 +4,14 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose") ;
 const rentalRoutes = require("./routes/rentals");
 const usersRoutes = require("./routes/users");
+const bookingRoutes = require("./routes/bookings") ;
 const { provideErrorHandler } = require("./middlewares") ;
 
 // models
 
 const Rental = require("./models/rental") ;
 const User = require("./models/user") ;
-
+const Booking = require("./models/booking") ;
 const { onlyAuthUser } = require("./controllers/users") ;
 
 
@@ -41,6 +42,7 @@ app.get("/api/v1/secret" , onlyAuthUser , (req , res ) => {
 
 app.use("/api/v1/rentals",rentalRoutes);
 app.use("/api/v1/users",usersRoutes);
+app.use("/api/v1/bookings" , bookingRoutes) ; 
 
 app.listen(PORT , () => {
   console.log("server is running .") ;

@@ -71,3 +71,22 @@ exports.createRental = ( req , res ) => {
 //     return res.json({message : "Rental with id : " + rentalId + " was updated ."});
 //     }
     
+//middlewares 
+
+exports.isUserRentalOwner = (req , res , next) => {
+  const { rental } = req.body ;
+  const user = res.locals.user ;
+
+  Rental.findById(rental)
+  .populate("owner")
+  .exec((error , foundRental) => {
+    if(error) {
+      return res.mongoError(error) ;
+    }
+
+    if(foundRental.owner === user.id) {
+      return res.sendApiError({status : 422 , title : "Invalid User !!",detail : " Cannot book your own rental !! "}) ;
+    }
+    next() ;
+  })
+}  
